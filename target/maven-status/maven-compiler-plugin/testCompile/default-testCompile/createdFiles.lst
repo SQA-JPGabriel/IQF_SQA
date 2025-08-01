@@ -1,0 +1,6 @@
+base\BaseTest.class
+testcase\Login.class
+utilities\ExtentReportsManager.class
+utilities\ReadPropertyFile.class
+utilities\ReadXLSData.class
+utilities\ScreenshotUtil.class
