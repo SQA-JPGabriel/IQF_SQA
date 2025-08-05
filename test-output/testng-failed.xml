@@ -5,11 +5,11 @@
     <classes>
       <class name="testcase.MV">
         <methods>
+          <include name="SearchByEngineAndChassisNumber" invocation-numbers="0"/>
           <include name="logResultAndTearDown"/>
-          <include name="SearchByPlateNumber" invocation-numbers="0"/>
           <include name="registerTestAndSetup"/>
-          <include name="tearDownReport"/>
           <include name="setUpReport"/>
+          <include name="tearDownReport"/>
         </methods>
       </class> <!-- testcase.MV -->
     </classes>

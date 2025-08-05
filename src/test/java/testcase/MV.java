@@ -38,11 +38,11 @@ public class MV extends BaseTest {
             driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
             
             driver.findElement(By.xpath(prop.getProperty("ByPlateNumberLink"))).click();
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         	driver.findElement(By.xpath(prop.getProperty("PlateNoFld"))).sendKeys(plateno);
-        	Thread.sleep(5000);
+        	Thread.sleep(3000);
         	driver.findElement(By.xpath(prop.getProperty("PlateNoFld"))).sendKeys(Keys.ENTER);
-        	Thread.sleep(5000);
+        	Thread.sleep(3000);
         	
 
         	boolean testFailed = false;
@@ -87,66 +87,295 @@ public class MV extends BaseTest {
         
         
     }
-	//@Test(priority = 2, dataProvider = "xlsTestData", dataProviderClass = ReadXLSData.class)
-    public void SearchByDLInvalid(String username, String password,  String license, String invalidName, String invalidBirthDate) throws InterruptedException, IOException 
+	
+	@Test(priority = 2, dataProvider = "xlsTestData", dataProviderClass = ReadXLSData.class)
+	public void SearchByEngineNumber(String username, String password, String engineno, String Name, String BirthDate ) throws InterruptedException, IOException 
     {
-    
-    try 
-    {
-    	driver.findElement(By.xpath(prop.getProperty("Username"))).sendKeys(username);
-        Thread.sleep(1000);
+       //test = extent.createTest("TC01: Search by Driver's License");
 
-        driver.findElement(By.xpath(prop.getProperty("Password"))).sendKeys(password);
-        Thread.sleep(1000);
+        try {
+            driver.findElement(By.xpath(prop.getProperty("Username"))).sendKeys(username);
+            Thread.sleep(1000);
 
-        driver.findElement(By.xpath(prop.getProperty("YesTermsCondition"))).click();
+            driver.findElement(By.xpath(prop.getProperty("Password"))).sendKeys(password);
+            Thread.sleep(1000);
 
-        driver.findElement(By.xpath(prop.getProperty("LoginBtn"))).click();
-        Thread.sleep(3000);
+            driver.findElement(By.xpath(prop.getProperty("YesTermsCondition"))).click();
+
+            driver.findElement(By.xpath(prop.getProperty("LoginBtn"))).click();
+            Thread.sleep(3000);
+            
+            test.pass("Login successful",MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Search by DL")).build());
+            driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
+            
+            driver.findElement(By.xpath(prop.getProperty("ByEngineNumberLink"))).click();
+            Thread.sleep(3000);
+        	driver.findElement(By.xpath(prop.getProperty("EngineNoFld"))).sendKeys(engineno);
+        	Thread.sleep(3000);
+        	driver.findElement(By.xpath(prop.getProperty("EngineNoFld"))).sendKeys(Keys.ENTER);
+        	Thread.sleep(3000);
+        	
+
+        	boolean testFailed = false;
+        	// Name validation
+        	if (driver.findElement(By.xpath(prop.getProperty("MVName"))).getText().equals(Name)) {
+        	    System.out.println("Name matches");
+        	    test.info("Test Data name matches " + Name);
+        	    test.pass("Name Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Match!")).build());
+            	
+        	    Actions actions = new Actions(driver);
+            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+        	} else {
+        	    test.fail("Name MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Mismatch!")).build());
+        	    testFailed = true;
+        	}
+
+        	// Birthdate validation
+        	if (driver.findElement(By.xpath(prop.getProperty("MVBDay"))).getText().equals(BirthDate)) {
+        	    System.out.println("birthdate matches");
+        	    test.info("Test Data birthday matches " + BirthDate);
+        	    test.pass("Birthday Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Match!")).build());
+        	    
+        	    Actions actions = new Actions(driver);
+            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+        	} else {
+        	    test.fail("Birthdate MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Mismatch!")).build());
+        	    testFailed = true;
+        	}
+        	
+        	if (testFailed) {
+        	    Assert.fail("One or more validations failed. Check Extent report for details.");
+        	}
+           
+        } catch (Exception e) {
+            String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "LoginFailure");
+            test.fail("Login test failed due to: " + e.getMessage(),
+                      MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            throw e;
+        }
         
-        test.pass("Login successful",MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Search by DL")).build());
-        driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
-    	Thread.sleep(2000);
-    	driver.findElement(By.xpath(prop.getProperty("ByLicenseNumberLink"))).click();
-    	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(license);
-    	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(Keys.ENTER);
-    	Thread.sleep(5000);
-    	boolean testFailed = false;
-    	
-    	// Name mismatch expected
-    	String actualName = driver.findElement(By.xpath(prop.getProperty("Name"))).getText();
-    	if (!actualName.equals(invalidName)) {
-    	    System.out.println("Name mismatch as expected");
-    	    test.pass("Negative test passed: Name mismatch as expected", 
-    	        MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "NameMismatchExpected")).build());
-    	} else {
-    	    test.fail("Negative test failed: Name unexpectedly matched!",
-    	        MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "NameUnexpectedMatch")).build());
-    	    testFailed = true;
-    	}
-
-    	// Birthdate mismatch expected
-    	String actualBirthDate = driver.findElement(By.xpath(prop.getProperty("Birthday"))).getText();
-    	if (!actualBirthDate.equals(invalidBirthDate)) {
-    	    System.out.println("Birthdate mismatch as expected");
-    	    test.pass("Negative test passed: Birthdate mismatch as expected", 
-    	        MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "BirthdateMismatchExpected")).build());
-    	} else {
-    	    test.fail("Negative test failed: Birthdate unexpectedly matched!",
-    	        MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "BirthdateUnexpectedMatch")).build());
-    	    testFailed = true;
-    	}
-
-       
-    } 
-    	catch (Exception e) 
-    	{
-    		String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "LoginFailure");
-    		test.fail("Login test failed due to: " + e.getMessage(),
-            MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
-        throw e;
+        
     }
-    }
+	
+	@Test(priority = 3, dataProvider = "xlsTestData", dataProviderClass = ReadXLSData.class)
+	public void SearchByChassisNumber(String username, String password, String chassisno, String Name, String BirthDate ) throws InterruptedException, IOException 
+	{
+	       //test = extent.createTest("TC01: Search by Driver's License");
+
+	        try {
+	            driver.findElement(By.xpath(prop.getProperty("Username"))).sendKeys(username);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("Password"))).sendKeys(password);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("YesTermsCondition"))).click();
+
+	            driver.findElement(By.xpath(prop.getProperty("LoginBtn"))).click();
+	            Thread.sleep(3000);
+	            
+	            test.pass("Login successful",MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Search by DL")).build());
+	            driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
+	            
+	            driver.findElement(By.xpath(prop.getProperty("ByChassisNumberLink"))).click();
+	            Thread.sleep(3000);
+	        	driver.findElement(By.xpath(prop.getProperty("ChassisNoFld"))).sendKeys(chassisno);
+	        	Thread.sleep(3000);
+	        	driver.findElement(By.xpath(prop.getProperty("ChassisNoFld"))).sendKeys(Keys.ENTER);
+	        	Thread.sleep(3000);
+	        	
+
+	        	boolean testFailed = false;
+	        	// Name validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVName"))).getText().equals(Name)) {
+	        	    System.out.println("Name matches");
+	        	    test.info("Test Data name matches " + Name);
+	        	    test.pass("Name Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Match!")).build());
+	            	
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Name MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+
+	        	// Birthdate validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVBDay"))).getText().equals(BirthDate)) {
+	        	    System.out.println("birthdate matches");
+	        	    test.info("Test Data birthday matches " + BirthDate);
+	        	    test.pass("Birthday Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Match!")).build());
+	        	    
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Birthdate MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+	        	
+	        	if (testFailed) {
+	        	    Assert.fail("One or more validations failed. Check Extent report for details.");
+	        	}
+	           
+	        } catch (Exception e) {
+	            String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "LoginFailure");
+	            test.fail("Login test failed due to: " + e.getMessage(),
+	                      MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+	            throw e;
+	        }
+	        
+	        
+	}
+		
+	@Test(priority = 4, dataProvider = "xlsTestData", dataProviderClass = ReadXLSData.class)
+	public void SearchByEngineAndChassisNumber(String username, String password, String engineno, String chasisno, String Name, String BirthDate ) throws InterruptedException, IOException 
+	{
+	       //test = extent.createTest("TC01: Search by Driver's License");
+
+	        try {
+	            driver.findElement(By.xpath(prop.getProperty("Username"))).sendKeys(username);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("Password"))).sendKeys(password);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("YesTermsCondition"))).click();
+
+	            driver.findElement(By.xpath(prop.getProperty("LoginBtn"))).click();
+	            Thread.sleep(3000);
+	            
+	            test.pass("Login successful",MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Search by DL")).build());
+	            driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
+	            
+	            driver.findElement(By.xpath(prop.getProperty("ByPalteNumberAndChassesNumberLink"))).click();
+	            Thread.sleep(3000);
+	            
+	        	//Element ChassisNoFld was tagged as EngineNoFld
+	            //In order to fix this i swapped the data driven variable for ChassisNoFld and EngineNoFld
+	            driver.findElement(By.xpath(prop.getProperty("ChassisNoFld"))).sendKeys(engineno);
+	            
+	        	driver.findElement(By.xpath(prop.getProperty("EngineNoFld"))).sendKeys(chasisno);
+	        	
+	        	driver.findElement(By.xpath(prop.getProperty("EngineNoFld"))).sendKeys(Keys.ENTER);
+	        	Thread.sleep(3000);
+
+
+	        	boolean testFailed = false;
+	        	// Name validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVName"))).getText().equals(Name)) {
+	        	    System.out.println("Name matches");
+	        	    test.info("Test Data name matches " + Name);
+	        	    test.pass("Name Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Match!")).build());
+	            	
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Name MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+
+	        	// Birthdate validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVBDay"))).getText().equals(BirthDate)) {
+	        	    System.out.println("birthdate matches");
+	        	    test.info("Test Data birthday matches " + BirthDate);
+	        	    test.pass("Birthday Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Match!")).build());
+	        	    
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Birthdate MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+	        	
+	        	if (testFailed) {
+	        	    Assert.fail("One or more validations failed. Check Extent report for details.");
+	        	}
+	           
+	        } catch (Exception e) {
+	            String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "LoginFailure");
+	            test.fail("Login test failed due to: " + e.getMessage(),
+	                      MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+	            throw e;
+	        }
+	        
+	        
+	 }
+		
+	@Test(priority = 5, dataProvider = "xlsTestData", dataProviderClass = ReadXLSData.class)
+	public void SearchByMVFileNumber(String username, String password, String mvfileno, String Name, String BirthDate ) throws InterruptedException, IOException 
+	{
+	       //test = extent.createTest("TC01: Search by Driver's License");
+
+	        try {
+	            driver.findElement(By.xpath(prop.getProperty("Username"))).sendKeys(username);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("Password"))).sendKeys(password);
+	            Thread.sleep(1000);
+
+	            driver.findElement(By.xpath(prop.getProperty("YesTermsCondition"))).click();
+
+	            driver.findElement(By.xpath(prop.getProperty("LoginBtn"))).click();
+	            Thread.sleep(3000);
+	            
+	            test.pass("Login successful",MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Search by DL")).build());
+	            driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
+	            
+	            driver.findElement(By.xpath(prop.getProperty("ByMVFileNumberLink"))).click();
+	            Thread.sleep(3000);
+	        	driver.findElement(By.xpath(prop.getProperty("MVFielNoFld"))).sendKeys(mvfileno);
+	        	Thread.sleep(3000);
+	        	driver.findElement(By.xpath(prop.getProperty("MVFielNoFld"))).sendKeys(Keys.ENTER);
+	        	Thread.sleep(3000);
+	        	
+
+	        	boolean testFailed = false;
+	        	// Name validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVName"))).getText().equals(Name)) {
+	        	    System.out.println("Name matches");
+	        	    test.info("Test Data name matches " + Name);
+	        	    test.pass("Name Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Match!")).build());
+	            	
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Name MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Name Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+
+	        	// Birthdate validation
+	        	if (driver.findElement(By.xpath(prop.getProperty("MVBDay"))).getText().equals(BirthDate)) {
+	        	    System.out.println("birthdate matches");
+	        	    test.info("Test Data birthday matches " + BirthDate);
+	        	    test.pass("Birthday Match!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Match!")).build());
+	        	    
+	        	    Actions actions = new Actions(driver);
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	            	actions.sendKeys(Keys.PAGE_DOWN).perform();
+	        	} else {
+	        	    test.fail("Birthdate MISMATCH!", MediaEntityBuilder.createScreenCaptureFromPath(ScreenshotUtil.captureScreenshot(driver, "Birthday Mismatch!")).build());
+	        	    testFailed = true;
+	        	}
+	        	
+	        	if (testFailed) {
+	        	    Assert.fail("One or more validations failed. Check Extent report for details.");
+	        	}
+	           
+	        } catch (Exception e) {
+	            String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "LoginFailure");
+	            test.fail("Login test failed due to: " + e.getMessage(),
+	                      MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+	            throw e;
+	        }
+	        
+	        
+	    }
     
     }
 

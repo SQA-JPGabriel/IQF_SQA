@@ -37,9 +37,9 @@ public class DL extends BaseTest {
             driver.findElement(By.xpath(prop.getProperty("WelcomeContinueBtn"))).click();
             driver.findElement(By.xpath(prop.getProperty("ByLicenseNumberLink"))).click();
         	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(license);
-        	Thread.sleep(5000);
+        	Thread.sleep(3000);
         	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(Keys.ENTER);
-        	Thread.sleep(5000);
+        	Thread.sleep(3000);
         	
         	boolean testFailed = false;
         	// Name validation
@@ -98,7 +98,7 @@ public class DL extends BaseTest {
     	driver.findElement(By.xpath(prop.getProperty("ByLicenseNumberLink"))).click();
     	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(license);
     	driver.findElement(By.xpath(prop.getProperty("LicenseNumberFld"))).sendKeys(Keys.ENTER);
-    	Thread.sleep(5000);
+    	Thread.sleep(3000);
     	boolean testFailed = false;
     	// Name mismatch expected
     	String actualName = driver.findElement(By.xpath(prop.getProperty("Name"))).getText();
