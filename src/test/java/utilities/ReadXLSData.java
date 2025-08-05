@@ -18,7 +18,7 @@ public class ReadXLSData {
 	        // Use the method name as sheet name
 	        String excelSheetName = m.getName();
 
-	        File file = new File("D:\\Eclipse workplace\\SQAMAutomationDemo\\DemoAutomation\\src\\test\\resources\\testdata\\testDataLogin.xlsx");
+	        File file = new File("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\testdata\\testDataLogin.xlsx");
 	        FileInputStream fis = new FileInputStream(file);
 	        Workbook workbook = WorkbookFactory.create(fis);
 	        Sheet sheet = workbook.getSheet(excelSheetName);

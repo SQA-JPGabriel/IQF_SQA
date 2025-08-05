@@ -6,7 +6,7 @@
       <class name="testcase.MV">
         <methods>
           <include name="logResultAndTearDown"/>
-          <include name="SearchByPlateNumber"/>
+          <include name="SearchByPlateNumber" invocation-numbers="0"/>
           <include name="registerTestAndSetup"/>
           <include name="tearDownReport"/>
           <include name="setUpReport"/>

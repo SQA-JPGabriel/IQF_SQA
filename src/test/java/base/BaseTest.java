@@ -38,9 +38,9 @@ public class BaseTest extends ReadPropertyFile {
 
         // Load properties
         if (prop.isEmpty()) {
-            FileReader fr = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\DemoAutomation\\src\\test\\resources\\configfiles\\config.properties");
+            FileReader fr = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\configfiles\\config.properties");
             prop.load(fr);
-            FileReader fr2 = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\DemoAutomation\\src\\test\\resources\\configfiles\\locators.properties");
+            FileReader fr2 = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\configfiles\\locators.properties");
             prop.load(fr2);
         }
 
