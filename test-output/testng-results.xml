@@ -1,74 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-01T12:52:58 CST" name="Default suite" finished-at="2025-08-01T12:53:20 CST" duration-ms="21800">
+  <suite started-at="2025-08-05T10:39:39 CST" name="Default suite" finished-at="2025-08-05T10:39:40 CST" duration-ms="685">
     <groups>
     </groups>
-    <test started-at="2025-08-01T12:52:58 CST" name="Default test" finished-at="2025-08-01T12:53:20 CST" duration-ms="21800">
-      <class name="testcase.DL">
-        <test-method is-config="true" signature="setUpReport()[pri:0, instance:testcase.DL@24aed80c]" started-at="2025-08-01T12:52:57 CST" name="setUpReport" finished-at="2025-08-01T12:52:58 CST" duration-ms="323" status="PASS">
+    <test started-at="2025-08-05T10:39:39 CST" name="Default test" finished-at="2025-08-05T10:39:40 CST" duration-ms="685">
+      <class name="testcase.MV">
+        <test-method is-config="true" signature="setUpReport()[pri:0, instance:testcase.MV@24aed80c]" started-at="2025-08-05T10:39:39 CST" name="setUpReport" finished-at="2025-08-05T10:39:39 CST" duration-ms="231" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpReport -->
-        <test-method is-config="true" signature="registerTestAndSetup(java.lang.reflect.Method)[pri:0, instance:testcase.DL@24aed80c]" started-at="2025-08-01T12:52:58 CST" name="registerTestAndSetup" finished-at="2025-08-01T12:53:02 CST" duration-ms="3410" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void testcase.DL.SearchByDLValid(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException,java.io.IOException]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="SearchByPlateNumber(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.MV@24aed80c]" started-at="2025-08-05T10:39:40 CST" name="SearchByPlateNumber" data-provider="xlsTestData" finished-at="2025-08-05T10:39:40 CST" duration-ms="0" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[java.lang.IllegalArgumentException: Sheet 'SearchByPlateNumber' not found in Excel file.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: java.lang.IllegalArgumentException: Sheet 'SearchByPlateNumber' not found in Excel file.
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:58)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:159)
+at org.testng.internal.Parameters.handleParameters(Parameters.java:809)
+at org.testng.internal.Parameters.handleParameters(Parameters.java:734)
+at org.testng.internal.invokers.ParameterHandler.handleParameters(ParameterHandler.java:72)
+at org.testng.internal.invokers.ParameterHandler.createParameters(ParameterHandler.java:51)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:949)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.lang.IllegalArgumentException: Sheet 'SearchByPlateNumber' not found in Excel file.
+at utilities.ReadXLSData.getData(ReadXLSData.java:27)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:54)
+... 25 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- registerTestAndSetup -->
-        <test-method signature="SearchByDLValid(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.DL@24aed80c]" started-at="2025-08-01T12:53:02 CST" name="SearchByDLValid" data-provider="xlsTestData" finished-at="2025-08-01T12:53:19 CST" duration-ms="17455" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[jbgabriel@sqacm]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[P@ssw0rd*]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[EA000000221]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NEN , ONOFFNPLC ONOFFNPLC]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Jan 1 1970]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchByDLValid -->
-        <test-method is-config="true" signature="logResultAndTearDown(org.testng.ITestResult)[pri:0, instance:testcase.DL@24aed80c]" started-at="2025-08-01T12:53:19 CST" name="logResultAndTearDown" finished-at="2025-08-01T12:53:20 CST" duration-ms="232" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=SearchByDLValid status=SUCCESS method=DL.SearchByDLValid(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.DL@24aed80c] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logResultAndTearDown -->
-        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:testcase.DL@24aed80c]" started-at="2025-08-01T12:53:20 CST" name="tearDownReport" finished-at="2025-08-01T12:53:20 CST" duration-ms="291" status="PASS">
+        </test-method> <!-- SearchByPlateNumber -->
+        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:testcase.MV@24aed80c]" started-at="2025-08-05T10:39:40 CST" name="tearDownReport" finished-at="2025-08-05T10:39:40 CST" duration-ms="284" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownReport -->
-      </class> <!-- testcase.DL -->
+      </class> <!-- testcase.MV -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

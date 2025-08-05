@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcase.DL">
+      <class name="testcase.MV">
         <methods>
-          <include name="SearchByDLValid" invocation-numbers="0"/>
           <include name="logResultAndTearDown"/>
+          <include name="SearchByPlateNumber"/>
           <include name="registerTestAndSetup"/>
           <include name="tearDownReport"/>
           <include name="setUpReport"/>
         </methods>
-      </class> <!-- testcase.DL -->
+      </class> <!-- testcase.MV -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
