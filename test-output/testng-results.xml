@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-05T11:24:28 CST" name="Default suite" finished-at="2025-08-05T11:24:54 CST" duration-ms="25789">
+  <suite started-at="2025-08-05T12:02:59 CST" name="Default suite" finished-at="2025-08-05T12:03:25 CST" duration-ms="26085">
     <groups>
     </groups>
-    <test started-at="2025-08-05T11:24:28 CST" name="Default test" finished-at="2025-08-05T11:24:54 CST" duration-ms="25789">
+    <test started-at="2025-08-05T12:02:59 CST" name="Default test" finished-at="2025-08-05T12:03:25 CST" duration-ms="26085">
       <class name="testcase.MV">
-        <test-method is-config="true" signature="setUpReport()[pri:0, instance:testcase.MV@7c9d8e2]" started-at="2025-08-05T11:24:27 CST" name="setUpReport" finished-at="2025-08-05T11:24:28 CST" duration-ms="250" status="PASS">
+        <test-method is-config="true" signature="setUpReport()[pri:0, instance:testcase.MV@69453e37]" started-at="2025-08-05T12:02:59 CST" name="setUpReport" finished-at="2025-08-05T12:02:59 CST" duration-ms="233" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpReport -->
-        <test-method is-config="true" signature="registerTestAndSetup(java.lang.reflect.Method)[pri:0, instance:testcase.MV@7c9d8e2]" started-at="2025-08-05T11:24:29 CST" name="registerTestAndSetup" finished-at="2025-08-05T11:24:31 CST" duration-ms="2225" status="PASS">
+        <test-method is-config="true" signature="registerTestAndSetup(java.lang.reflect.Method)[pri:0, instance:testcase.MV@69453e37]" started-at="2025-08-05T12:03:00 CST" name="registerTestAndSetup" finished-at="2025-08-05T12:03:02 CST" duration-ms="2160" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,7 +22,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- registerTestAndSetup -->
-        <test-method signature="SearchByPlateNumber(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.MV@7c9d8e2]" started-at="2025-08-05T11:24:31 CST" name="SearchByPlateNumber" data-provider="xlsTestData" finished-at="2025-08-05T11:24:53 CST" duration-ms="22337" status="PASS">
+        <test-method signature="SearchByPlateNumber(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.MV@69453e37]" started-at="2025-08-05T12:03:02 CST" name="SearchByPlateNumber" data-provider="xlsTestData" finished-at="2025-08-05T12:03:25 CST" duration-ms="22668" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -53,18 +53,18 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SearchByPlateNumber -->
-        <test-method is-config="true" signature="logResultAndTearDown(org.testng.ITestResult)[pri:0, instance:testcase.MV@7c9d8e2]" started-at="2025-08-05T11:24:53 CST" name="logResultAndTearDown" finished-at="2025-08-05T11:24:54 CST" duration-ms="206" status="PASS">
+        <test-method is-config="true" signature="logResultAndTearDown(org.testng.ITestResult)[pri:0, instance:testcase.MV@69453e37]" started-at="2025-08-05T12:03:25 CST" name="logResultAndTearDown" finished-at="2025-08-05T12:03:25 CST" duration-ms="232" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=SearchByPlateNumber status=SUCCESS method=MV.SearchByPlateNumber(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.MV@7c9d8e2] output={null}]]]>
+                <![CDATA[[TestResult name=SearchByPlateNumber status=SUCCESS method=MV.SearchByPlateNumber(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:testcase.MV@69453e37] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logResultAndTearDown -->
-        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:testcase.MV@7c9d8e2]" started-at="2025-08-05T11:24:54 CST" name="tearDownReport" finished-at="2025-08-05T11:24:54 CST" duration-ms="277" status="PASS">
+        <test-method is-config="true" signature="tearDownReport()[pri:0, instance:testcase.MV@69453e37]" started-at="2025-08-05T12:03:25 CST" name="tearDownReport" finished-at="2025-08-05T12:03:25 CST" duration-ms="257" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownReport -->

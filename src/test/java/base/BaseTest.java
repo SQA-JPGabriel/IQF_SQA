@@ -38,10 +38,21 @@ public class BaseTest extends ReadPropertyFile {
 
         // Load properties
         if (prop.isEmpty()) {
-            FileReader fr = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\configfiles\\config.properties");
-            prop.load(fr);
-            FileReader fr2 = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\configfiles\\locators.properties");
-            prop.load(fr2);
+        	
+        	// Get the project root directory dynamically
+        	String baseDir = System.getProperty("user.dir");
+
+        	// Define relative paths
+        	String configPath = baseDir + "/src/test/resources/configfiles/config.properties";
+        	String locatorsPath = baseDir + "/src/test/resources/configfiles/locators.properties";
+
+        	// Load properties
+        	FileReader fr = new FileReader(configPath);
+        	prop.load(fr);
+
+        	FileReader fr2 = new FileReader(locatorsPath);
+        	prop.load(fr2);
+
         }
 
         // Browser setup

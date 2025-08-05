@@ -11,8 +11,7 @@ public class ReadPropertyFile
 
 	public static void main(String[] args) throws IOException 
 	{
-		FileReader fr = new FileReader("D:\\Eclipse workplace\\SQAMAutomationDemo\\IQF_SQA\\src\\test\\resources\\configfiles\\config.properties");
-
+		FileReader fr = new FileReader(System.getProperty("user.dir") + "/src/test/resources/configfiles/config.properties");
 		Properties p = new Properties();
 		
 		p.load(fr);
